@@ -21,9 +21,24 @@
       body: "I work on vision-language navigation datasets and composable primitives for long-horizon embodied instruction following."
     },
     robotics: {
-      title: "Robotics System",
+      title: "Robotics Systems",
       body: "I develop mobile robot pipelines across perception, mapping, localization, path planning, motion control, and edge deployment."
     }
+  };
+
+  var relatedLinks = {
+    agent: [{ label: "Explore publications", href: "#publications" }],
+    navigation: [
+      { label: "Move2Anything", href: "https://move2anything.netlify.app/" },
+      { label: "HarnessVLN", href: "https://agibot-harnessvln.netlify.app/" }
+    ],
+    planning: [
+      { label: "Re²", href: "#paper-re2" },
+      { label: "DualWorldBench", href: "https://dualworld.netlify.app/" }
+    ],
+    robotics: [{ label: "HarnessVLN", href: "https://agibot-harnessvln.netlify.app/" }],
+    msra: [{ label: "Move2Anything", href: "https://move2anything.netlify.app/" }],
+    agibot: [{ label: "HarnessVLN", href: "https://agibot-harnessvln.netlify.app/" }]
   };
 
   var detailBox = document.getElementById("mapDetail");
@@ -33,25 +48,45 @@
     var data = details[key];
     if (!data || !detailBox) return;
     nodes.forEach(function (node) {
-      node.classList.toggle("is-active", node.dataset.node === key);
+      var active = node.dataset.node === key;
+      node.classList.toggle("is-active", active);
+      node.setAttribute("aria-pressed", String(active));
     });
-    detailBox.innerHTML =
-      '<span class="detail-kicker">Selected</span><h3>' +
-      data.title +
-      "</h3><p>" +
-      data.body +
-      "</p>";
+    var kicker = key === "agent" ? "Overview" :
+      (key === "msra" || key === "agibot" ? "Research internship" : "Research direction");
+    detailBox.replaceChildren();
+    var label = document.createElement("span");
+    label.className = "detail-kicker";
+    label.textContent = kicker;
+    var title = document.createElement("h3");
+    title.textContent = data.title;
+    var body = document.createElement("p");
+    body.textContent = data.body;
+    var links = document.createElement("div");
+    links.className = "detail-links";
+    relatedLinks[key].forEach(function (item) {
+      var link = document.createElement("a");
+      link.href = item.href;
+      link.textContent = item.label;
+      var arrow = document.createElement("span");
+      arrow.setAttribute("aria-hidden", "true");
+      arrow.textContent = " ↗";
+      link.appendChild(arrow);
+      // A publication anchor must also reveal its panel if the other tab is open.
+      if (item.href === "#paper-re2") {
+        link.addEventListener("click", function () {
+          document.getElementById("selected-publications-tab").click();
+        });
+      }
+      links.appendChild(link);
+    });
+    detailBox.append(label, title, body, links);
   }
 
   nodes.forEach(function (node) {
+    node.setAttribute("aria-pressed", String(node.classList.contains("is-active")));
     node.addEventListener("click", function () {
       selectNode(node.dataset.node);
-    });
-    node.addEventListener("keydown", function (event) {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        selectNode(node.dataset.node);
-      }
     });
   });
 
@@ -68,86 +103,23 @@
         var active = item === tab;
         item.classList.toggle("is-active", active);
         item.setAttribute("aria-selected", String(active));
+        item.tabIndex = active ? 0 : -1;
       });
       Object.keys(panels).forEach(function (key) {
         if (panels[key]) panels[key].hidden = key !== view;
       });
     });
-  });
-
-  var svg = document.getElementById("researchSvg");
-  var stage = document.querySelector(".map-stage");
-  var initialBox = { x: 0, y: 0, w: 920, h: 640 };
-  var box = Object.assign({}, initialBox);
-  var drag = null;
-
-  function setBox(next) {
-    box = next;
-    svg.setAttribute("viewBox", [box.x, box.y, box.w, box.h].join(" "));
-  }
-
-  function zoom(factor, clientX, clientY) {
-    if (!svg) return;
-    var rect = svg.getBoundingClientRect();
-    var px = clientX == null ? rect.left + rect.width / 2 : clientX;
-    var py = clientY == null ? rect.top + rect.height / 2 : clientY;
-    var sx = (px - rect.left) / rect.width;
-    var sy = (py - rect.top) / rect.height;
-    var nextW = Math.min(1120, Math.max(360, box.w * factor));
-    var nextH = Math.min(760, Math.max(224, box.h * factor));
-    var anchorX = box.x + box.w * sx;
-    var anchorY = box.y + box.h * sy;
-    setBox({
-      x: anchorX - nextW * sx,
-      y: anchorY - nextH * sy,
-      w: nextW,
-      h: nextH
-    });
-  }
-
-  if (svg) {
-    svg.addEventListener("wheel", function (event) {
+    tab.addEventListener("keydown", function (event) {
+      var index = tabs.indexOf(tab);
+      if (event.key === "ArrowRight") index = (index + 1) % tabs.length;
+      else if (event.key === "ArrowLeft") index = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === "Home") index = 0;
+      else if (event.key === "End") index = tabs.length - 1;
+      else return;
       event.preventDefault();
-      zoom(event.deltaY < 0 ? 0.88 : 1.12, event.clientX, event.clientY);
-    }, { passive: false });
-
-    svg.addEventListener("pointerdown", function (event) {
-      drag = { x: event.clientX, y: event.clientY, box: Object.assign({}, box) };
-      if (stage) stage.classList.add("is-dragging");
-      svg.setPointerCapture(event.pointerId);
-    });
-
-    svg.addEventListener("pointermove", function (event) {
-      if (!drag) return;
-      var rect = svg.getBoundingClientRect();
-      var dx = ((event.clientX - drag.x) / rect.width) * drag.box.w;
-      var dy = ((event.clientY - drag.y) / rect.height) * drag.box.h;
-      setBox({
-        x: drag.box.x - dx,
-        y: drag.box.y - dy,
-        w: drag.box.w,
-        h: drag.box.h
-      });
-    });
-
-    svg.addEventListener("pointerup", function (event) {
-      drag = null;
-      if (stage) stage.classList.remove("is-dragging");
-      svg.releasePointerCapture(event.pointerId);
-    });
-
-    svg.addEventListener("pointercancel", function () {
-      drag = null;
-      if (stage) stage.classList.remove("is-dragging");
-    });
-  }
-
-  Array.prototype.slice.call(document.querySelectorAll("[data-map-zoom]")).forEach(function (button) {
-    button.addEventListener("click", function () {
-      var action = button.dataset.mapZoom;
-      if (action === "in") zoom(0.82);
-      if (action === "out") zoom(1.18);
-      if (action === "reset") setBox(Object.assign({}, initialBox));
+      tabs[index].focus();
+      tabs[index].click();
     });
   });
+
 })();

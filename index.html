@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="topbar">
       <div class="shell topbar-inner">
         <a class="brand" href="#top" aria-label="Yang Chen homepage">
@@ -19,6 +20,7 @@
         </a>
         <nav class="nav" aria-label="Primary navigation">
           <a href="#about">About</a>
+          <a href="#news">News</a>
           <a href="#research">Research</a>
           <a href="#publications">Publications</a>
           <a href="#awards">Awards</a>
@@ -28,9 +30,9 @@
     </header>
 
     <main class="shell site-layout" id="top">
-      <aside class="panel profile-panel" id="about" aria-labelledby="profile-title">
+      <aside class="panel profile-panel" aria-labelledby="profile-title">
         <div class="portrait-mark">
-          <img src="./assets/chenyang-portrait.jpg" alt="Portrait of Yang Chen" />
+          <img src="./assets/chenyang-portrait.jpg" alt="Portrait of Yang Chen" fetchpriority="high" />
         </div>
         <h1 class="hero-name" id="profile-title">Yang Chen<span>陈旸</span></h1>
         <p class="profile-caption">Ph.D. student at Nanjing University (Suzhou Campus), LAMDA Group.</p>
@@ -48,16 +50,20 @@
             <span>Advisor: <a href="https://www.lamda.nju.edu.cn/guolz/">Lan-Zhe Guo</a></span>
           </div>
         </div>
+        <div class="profile-links" aria-label="Profile links">
+          <a class="link-pill" href="https://github.com/chenyang126">GitHub ↗</a>
+          <a class="link-pill" href="https://openreview.net/profile?id=~Yang_Chen58">OpenReview ↗</a>
+        </div>
       </aside>
 
-      <div class="content-flow">
-        <section class="panel intro-panel" aria-labelledby="about-title">
+      <div class="content-flow" id="main-content" tabindex="-1">
+        <section class="panel intro-panel" id="about" aria-labelledby="about-title">
           <h2 class="section-title" id="about-title">About Me</h2>
           <p class="lede">
-            I am a Ph.D. student in School of Intelligence Science and Technology,
+            I am a Ph.D. student in the School of Intelligence Science and Technology at
             <a href="https://njusz.nju.edu.cn/">Nanjing University (Suzhou Campus)</a>
             and a member of the LAMDA Group led by Zhi-Hua Zhou. My research focuses
-            on Embodied Agent under real physical constraints.
+            on embodied agents that can plan, act, and learn under real physical constraints.
           </p>
           <div class="education-block">
             <h3 class="block-title">Education</h3>
@@ -81,130 +87,102 @@
           </div>
         </section>
 
-        <section class="section" id="research">
+        <section class="section news-section" id="news" aria-labelledby="news-title">
+          <div class="section-head news-head">
+            <h2 class="section-title" id="news-title">News</h2>
+            <span class="section-note" id="news-hint">Scroll for more ↓</span>
+          </div>
+          <div class="news-window" role="region" aria-labelledby="news-title" aria-describedby="news-hint" tabindex="0">
+            <ol class="news-list">
+              <li class="news-item">
+                <time datetime="2026-09">Sep 2026</time>
+                <p><a href="https://dualworld.netlify.app/">DualWorldBench</a> has been accepted to <strong>NeurIPS 2026</strong>!</p>
+              </li>
+              <li class="news-item">
+                <time datetime="2026-09">Sep 2026</time>
+                <p>We released <a href="https://agibot-harnessvln.netlify.app/"><strong>HarnessVLN</strong></a>!</p>
+              </li>
+              <li class="news-item">
+                <time datetime="2026-08">Aug 2026</time>
+                <p>Two papers have been accepted to <strong>EMNLP 2026</strong>!</p>
+              </li>
+              <li class="news-item">
+                <time datetime="2026-07">Jul 2026</time>
+                <p><a href="https://move2anything.netlify.app/">Move2Anything (M2A)</a> has been accepted to the <strong>OWN Workshop at RSS 2026</strong>!</p>
+              </li>
+              <li class="news-item news-award">
+                <time datetime="2026-05">May 2026</time>
+                <p>We won the <strong>championship</strong> in the <a href="https://embodiedbench.github.io/challenge.html"><strong>CVPR 2026 EmbodiedBench Challenge</strong></a>!</p>
+              </li>
+              <li class="news-item">
+                <time datetime="2026-05">May 2026</time>
+                <p>Re²Agent has been accepted to the <strong>FMEA Workshop at CVPR 2026</strong>!</p>
+              </li>
+              <li class="news-item">
+                <time datetime="2026-05">May 2026</time>
+                <p>One paper has been accepted to <strong>ICML 2026</strong>!</p>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section" id="research" aria-labelledby="research-title">
           <div class="section-head">
-            <h2 class="section-title">Research Map</h2>
-            <p class="section-intro">
-              An interactive view of my current research topics. Select a node for details.
-            </p>
+            <h2 class="section-title" id="research-title">Research Map</h2>
+            <p class="section-intro">Building embodied agents that plan, act, and learn in the physical world.</p>
           </div>
           <div class="panel map-panel">
-            <div class="map-toolbar" aria-label="Map controls">
-              <button type="button" class="icon-button" data-map-zoom="in" aria-label="Zoom in" title="Zoom in">+</button>
-              <button type="button" class="icon-button" data-map-zoom="out" aria-label="Zoom out" title="Zoom out">−</button>
-              <button type="button" class="icon-button" data-map-zoom="reset" aria-label="Reset map" title="Reset map">↺</button>
+            <div class="map-heading">
+              <span class="map-eyebrow">Research directions</span>
+              <span class="map-hint">Select a topic to explore</span>
             </div>
-            <div class="map-stage">
-              <svg id="researchSvg" class="research-svg" viewBox="0 0 920 640" role="img" aria-labelledby="map-title map-desc">
-                <title id="map-title">Interactive research map</title>
-                <desc id="map-desc">A clickable and zoomable map where embodied agent research branches into sub-directions above a timeline of internships.</desc>
-                <defs>
-                  <pattern id="mapGrid" width="34" height="34" patternUnits="userSpaceOnUse">
-                    <path d="M34 0H0V34" fill="none" stroke="#e9edf2" stroke-width="1"></path>
-                  </pattern>
-                  <linearGradient id="agentGlow" x1="0" x2="1" y1="0" y2="1">
-                    <stop offset="0" stop-color="#eaf2ff"></stop>
-                    <stop offset="1" stop-color="#eef8f3"></stop>
-                  </linearGradient>
-                  <linearGradient id="msraGrad" x1="0" x2="1" y1="0" y2="1">
-                    <stop offset="0" stop-color="#f1f6ff"></stop>
-                    <stop offset="1" stop-color="#fff8ed"></stop>
-                  </linearGradient>
-                  <linearGradient id="agibotGrad" x1="0" x2="1" y1="0" y2="1">
-                    <stop offset="0" stop-color="#effaf6"></stop>
-                    <stop offset="1" stop-color="#f5f1ff"></stop>
-                  </linearGradient>
-                  <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-                    <path d="M0,0 L10,5 L0,10 Z" fill="#5f6872"></path>
-                  </marker>
-                </defs>
-                <g id="mapViewport">
-                  <rect class="map-bg" x="-20" y="-20" width="960" height="700" rx="18"></rect>
-                  <rect x="-20" y="-20" width="960" height="700" fill="url(#mapGrid)" opacity="0.72"></rect>
-                  <text class="map-section-label" x="58" y="40">Research Directions</text>
-                  <text class="map-section-label" x="58" y="466">Internship Timeline</text>
-
-                  <g class="map-node core-node is-active" tabindex="0" role="button" data-node="agent" aria-label="Embodied agent">
-                    <rect x="320" y="64" width="280" height="104" rx="14"></rect>
-                    <text class="node-label large centered" x="460" y="108">Embodied Agent</text>
-                    <text class="node-meta centered" x="460" y="134">real physical constraints</text>
-                    <circle cx="460" cy="62" r="9"></circle>
-                  </g>
-
-                  <path class="flow-line delay-1" d="M460 168 C390 204 300 214 202 250" marker-end="url(#arrow)"></path>
-                  <path class="flow-line delay-2" d="M460 168 C444 202 424 218 408 250" marker-end="url(#arrow)"></path>
-                  <path class="flow-line delay-3" d="M460 168 C522 202 614 214 718 250" marker-end="url(#arrow)"></path>
-
-                  <g class="map-node sub-node" tabindex="0" role="button" data-node="navigation" aria-label="Vision language navigation">
-                    <rect x="58" y="250" width="226" height="92" rx="10"></rect>
-                    <text class="node-label" x="88" y="288">Vision-Language</text>
-                    <text class="node-label" x="88" y="313">Navigation</text>
-                    <text class="node-tag" x="88" y="333">Move2Anything · primitives</text>
-                  </g>
-                  <g class="map-node sub-node" tabindex="0" role="button" data-node="planning" aria-label="Embodied planning">
-                    <rect x="346" y="250" width="228" height="92" rx="10"></rect>
-                    <text class="node-label centered" x="460" y="292">Task &amp; Motion</text>
-                    <text class="node-label centered" x="460" y="317">Planning</text>
-                    <text class="node-tag centered" x="460" y="337">Re² · test-time refine</text>
-                  </g>
-                  <g class="map-node sub-node" tabindex="0" role="button" data-node="robotics" aria-label="Robotics systems">
-                    <rect x="636" y="250" width="226" height="92" rx="10"></rect>
-                    <text class="node-label" x="666" y="302">Robotics System</text>
-                    <text class="node-tag" x="666" y="327">perception · planning · control</text>
-                  </g>
-                  <g class="map-chip chip-a">
-                    <rect x="376" y="184" width="168" height="30" rx="8"></rect>
-                    <text x="460" y="204">rule induction</text>
-                  </g>
-                  <g class="map-chip chip-b">
-                    <rect x="598" y="184" width="188" height="30" rx="8"></rect>
-                    <text x="692" y="204">physical constraints</text>
-                  </g>
-                  <g class="map-chip chip-c">
-                    <rect x="132" y="184" width="202" height="30" rx="8"></rect>
-                    <text x="233" y="204">composable primitives</text>
-                  </g>
-
-                  <path class="timeline-line" d="M92 492 H828"></path>
-                  <text class="timeline-label" x="92" y="480">2025.06</text>
-                  <text class="timeline-label" x="360" y="480">2025.12</text>
-                  <text class="timeline-label" x="628" y="480">2026.06</text>
-                  <text class="timeline-label" x="796" y="480">Now</text>
-                  <circle class="timeline-dot" cx="92" cy="492" r="5"></circle>
-                  <circle class="timeline-dot" cx="360" cy="492" r="5"></circle>
-                  <circle class="timeline-dot" cx="628" cy="492" r="5"></circle>
-                  <circle class="timeline-dot active" cx="796" cy="492" r="5"></circle>
-                  <path class="timeline-connector" d="M360 492 V520"></path>
-                  <path class="timeline-connector" d="M628 492 V520"></path>
-
-                  <g class="map-node company-node msra-node internship-node" tabindex="0" role="button" data-node="msra" aria-label="Microsoft Research internship">
-                    <rect x="210" y="520" width="270" height="86" rx="10"></rect>
-                    <g class="ms-logo" aria-hidden="true">
-                      <rect x="236" y="546" width="14" height="14" fill="#f25022"></rect>
-                      <rect x="253" y="546" width="14" height="14" fill="#7fba00"></rect>
-                      <rect x="236" y="563" width="14" height="14" fill="#00a4ef"></rect>
-                      <rect x="253" y="563" width="14" height="14" fill="#ffb900"></rect>
-                    </g>
-                    <text class="node-label" x="284" y="556">Microsoft Research</text>
-                    <text class="node-meta" x="284" y="581">2025.06 - 2025.12 · VLN</text>
-                  </g>
-
-                  <g class="map-node company-node agibot-node internship-node" tabindex="0" role="button" data-node="agibot" aria-label="AgiBot internship">
-                    <rect x="500" y="520" width="336" height="86" rx="10"></rect>
-                    <image class="agibot-brand" href="./assets/agibot-logo.png" x="526" y="534" width="58" height="58" preserveAspectRatio="xMidYMid meet"></image>
-                    <text class="node-label" x="606" y="556">AgiBot</text>
-                    <text class="node-meta" x="606" y="581">2026.06 - Now · Robotics System</text>
-                  </g>
-                </g>
-              </svg>
+            <div class="research-tree" role="group" aria-label="Research directions">
+              <button type="button" class="map-node core-node is-active" data-node="agent" aria-pressed="true" aria-controls="mapDetail">
+                <span class="core-kicker">Research focus</span>
+                <span class="node-title">Embodied Agent</span>
+                <span class="node-subtitle">Plan · Act · Learn</span>
+              </button>
+              <div class="map-branches">
+                <button type="button" class="map-node topic-node" data-node="navigation" aria-pressed="false" aria-controls="mapDetail">
+                  <span class="topic-eyebrow"><span class="topic-dot" aria-hidden="true"></span>01 / Navigate</span>
+                  <span class="node-title">Vision-Language <br />Navigation</span>
+                  <span class="node-subtitle">Composable navigation primitives</span>
+                  <span class="node-footer">Move2Anything <span aria-hidden="true">↗</span></span>
+                </button>
+                <button type="button" class="map-node topic-node" data-node="planning" aria-pressed="false" aria-controls="mapDetail">
+                  <span class="topic-eyebrow"><span class="topic-dot" aria-hidden="true"></span>02 / Plan</span>
+                  <span class="node-title">Task &amp; Motion <br />Planning</span>
+                  <span class="node-subtitle">Rule induction &amp; test-time refinement</span>
+                  <span class="node-footer">Re² · DualWorldBench <span aria-hidden="true">↗</span></span>
+                </button>
+                <button type="button" class="map-node topic-node" data-node="robotics" aria-pressed="false" aria-controls="mapDetail">
+                  <span class="topic-eyebrow"><span class="topic-dot" aria-hidden="true"></span>03 / Deploy</span>
+                  <span class="node-title">Robotics <br />Systems</span>
+                  <span class="node-subtitle">Perception, planning &amp; control</span>
+                  <span class="node-footer">Real-world deployment <span aria-hidden="true">↗</span></span>
+                </button>
+              </div>
             </div>
-            <div class="map-detail" id="mapDetail" aria-live="polite">
-              <span class="detail-kicker">Selected</span>
+            <div class="map-detail" id="mapDetail" aria-live="polite" aria-atomic="true">
+              <span class="detail-kicker">Overview</span>
               <h3>Embodied Agent</h3>
-              <p>
-                My current research studies embodied agents that can plan, act,
-                and refine decisions under real physical constraints.
-              </p>
+              <p>My current research studies embodied agents that can plan, act, and refine decisions under real physical constraints.</p>
+              <div class="detail-links"><a href="#publications">Explore publications <span aria-hidden="true">↗</span></a></div>
+            </div>
+            <div class="map-experience">
+              <h3 class="map-eyebrow">Research in practice <span> / Internships</span></h3>
+              <div class="internship-timeline" role="group" aria-label="Research internships in chronological order">
+                <button type="button" class="map-node internship-node" data-node="msra" aria-pressed="false" aria-controls="mapDetail">
+                  <span class="internship-date">Jun — Dec 2025</span>
+                  <span class="internship-company"><span class="ms-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Microsoft Research</span></span>
+                  <span class="node-subtitle">Vision-language navigation</span>
+                </button>
+                <button type="button" class="map-node internship-node" data-node="agibot" aria-pressed="false" aria-controls="mapDetail">
+                  <span class="internship-date">Jun 2026 — Present <span class="current-badge">Current</span></span>
+                  <span class="internship-company"><img src="./assets/agibot-logo.png" alt="" width="24" height="24" /><span>AgiBot</span></span>
+                  <span class="node-subtitle">Robotics systems &amp; deployment</span>
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -213,16 +191,16 @@
           <div class="section-head publication-head">
             <h2 class="section-title">Publications</h2>
             <div class="publication-tabs" role="tablist" aria-label="Publication view">
-              <button class="publication-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="selected-publications-panel" data-publication-view="selected">Selected</button>
-              <button class="publication-tab" type="button" role="tab" aria-selected="false" aria-controls="all-publications-panel" data-publication-view="all">All by date</button>
+              <button class="publication-tab is-active" id="selected-publications-tab" type="button" role="tab" aria-selected="true" aria-controls="selected-publications-panel" data-publication-view="selected">Selected</button>
+              <button class="publication-tab" id="all-publications-tab" type="button" role="tab" aria-selected="false" aria-controls="all-publications-panel" tabindex="-1" data-publication-view="all">All by date</button>
             </div>
           </div>
 
-          <div class="publication-panel" id="selected-publications-panel" role="tabpanel">
+          <div class="publication-panel" id="selected-publications-panel" role="tabpanel" aria-labelledby="selected-publications-tab" tabindex="0">
             <div class="paper-list">
-              <article class="paper-card">
+              <article class="paper-card" id="paper-re2">
                 <div class="paper-thumb teaser-contain">
-                  <img src="./assets/paper-re2.jpg" alt="Overview figure for Re2: Reflective Rule Induction and Rule-Guided Refinement for Embodied Planning" />
+                  <img loading="lazy" decoding="async" src="./assets/paper-re2.jpg" alt="Overview figure for Re2: Reflective Rule Induction and Rule-Guided Refinement for Embodied Planning" />
                   <span class="thumb-badge">Under Review</span>
                 </div>
                 <div class="paper-content">
@@ -233,7 +211,7 @@
                   </div>
                   <h3>Re²: Reflective Rule Induction and Rule-Guided Refinement for Embodied Planning</h3>
                   <p class="paper-authors"><a href="https://openreview.net/profile?id=~Yang_Chen58"><strong>Yang Chen</strong></a>, <a href="https://openreview.net/profile?id=~Hong-Jie_You1">Hong-Jie You</a>, <a href="https://openreview.net/profile?id=~Jie-Jing_Shao1">Jie-Jing Shao</a>, <a href="https://openreview.net/profile?id=~Xiao-Wen_Yang4">Xiao-Wen Yang</a>, <a href="https://openreview.net/profile?id=~Ming_Yang30">Ming Yang</a>, <a href="https://openreview.net/profile?id=~Yu-Feng_Li1">Yu-Feng Li</a>, <a href="https://openreview.net/profile?id=~Lan-Zhe_Guo2">Lan-Zhe Guo</a></p>
-                  <p class="paper-venue">Under review.</p>
+                  <p class="paper-venue">FMEA Workshop @ CVPR 2026 · Poster. Main submission under review.</p>
                   <p class="paper-summary">
                     A closed-loop embodied planning framework with trajectory
                     reflection, rule induction, rule retrieval, and test-time correction.
@@ -243,7 +221,7 @@
 
               <article class="paper-card">
                 <div class="paper-thumb teaser-contain">
-                  <img src="./assets/paper-move2anything.jpg" alt="Overview figure for learning composable navigation primitives for vision-language navigation" />
+                  <img loading="lazy" decoding="async" src="./assets/paper-move2anything.jpg" alt="Overview figure for learning composable navigation primitives for vision-language navigation" />
                   <span class="thumb-badge">Under Review</span>
                 </div>
                 <div class="paper-content">
@@ -254,36 +232,37 @@
                   </div>
                   <h3>From End-to-End to Step-by-Step: Learning Composable Navigation Primitives for Vision-Language Navigation</h3>
                   <p class="paper-authors"><a href="https://openreview.net/profile?id=~Yang_Chen58"><strong>Yang Chen</strong></a>, <a href="https://openreview.net/profile?id=~Xiaohan_Yi2">Xiaohan Yi</a>, <a href="https://openreview.net/profile?id=~Danyang_Peng2">Danyang Peng</a>, <a href="https://openreview.net/profile?id=~Zhuoxia_Wang1">Zhuoxia Wang</a>, <a href="https://openreview.net/profile?id=~Shi-Yu_Tian1">Shi-Yu Tian</a>, <a href="https://openreview.net/profile?id=~Jiang_Bian1">Jiang Bian</a>, <a href="https://openreview.net/profile?id=~Lan-Zhe_Guo2">Lan-Zhe Guo</a></p>
-                  <p class="paper-venue">Under review.</p>
+                  <p class="paper-venue">OWN Workshop @ RSS 2026. Main submission under review.</p>
                   <p class="pub-links"><a href="https://move2anything.netlify.app/">Website</a></p>
                 </div>
               </article>
 
               <article class="paper-card">
                 <div class="paper-thumb teaser-contain">
-                  <img src="./assets/paper-dualworldbench.jpg" alt="Overview figure for DualWorldBench pickup-delivery planning benchmark" />
-                  <span class="thumb-badge">Under Review</span>
+                  <img loading="lazy" decoding="async" src="./assets/paper-dualworldbench.jpg" alt="Overview figure for DualWorldBench pickup-delivery planning benchmark" />
+                  <span class="thumb-badge">NeurIPS 2026</span>
                 </div>
                 <div class="paper-content">
                   <div class="paper-head">
-                    <span class="meta-pill">Under review</span>
+                    <span class="meta-pill workshop">NeurIPS 2026</span>
                     <span class="meta-pill">Benchmark</span>
                   </div>
                   <h3>DualWorldBench: Can Agents Plan Deliveries across Symbolic and Grounded Worlds?</h3>
                   <p class="paper-authors"><a href="https://openreview.net/profile?id=~Yang_Chen58"><strong>Yang Chen</strong></a>, <a href="https://openreview.net/profile?id=~Bin_Wen4">Bin Wen</a>, <a href="https://openreview.net/profile?id=~Danyang_Peng2">Danyang Peng</a>, <a href="https://openreview.net/profile?id=~Hong-Jie_You1">Hong-Jie You</a>, <a href="https://openreview.net/profile?id=~Ziqiao_Shang1">Ziqiao Shang</a>, <a href="https://openreview.net/profile?id=~Lan-Zhe_Guo2">Lan-Zhe Guo</a></p>
-                  <p class="paper-venue">Under review.</p>
+                  <p class="paper-venue"><span class="venue-abbr">NeurIPS 2026</span>, accepted.</p>
                   <p class="pub-links"><a href="https://dualworld.netlify.app/">Website</a></p>
                 </div>
               </article>
             </div>
           </div>
 
-          <div class="publication-panel" id="all-publications-panel" role="tabpanel" hidden>
+          <div class="publication-panel" id="all-publications-panel" role="tabpanel" aria-labelledby="all-publications-tab" tabindex="0" hidden>
             <ol class="home-pub-list">
               <li>
-                <div class="pub-title">Re²: Reflective Rule Induction and Rule-Guided Refinement for Embodied Planning</div>
-                <div class="pub-authors"><a href="https://openreview.net/profile?id=~Yang_Chen58"><strong>Yang Chen</strong></a>, <a href="https://openreview.net/profile?id=~Hong-Jie_You1">Hong-Jie You</a>, <a href="https://openreview.net/profile?id=~Jie-Jing_Shao1">Jie-Jing Shao</a>, <a href="https://openreview.net/profile?id=~Xiao-Wen_Yang4">Xiao-Wen Yang</a>, <a href="https://openreview.net/profile?id=~Ming_Yang30">Ming Yang</a>, <a href="https://openreview.net/profile?id=~Yu-Feng_Li1">Yu-Feng Li</a>, <a href="https://openreview.net/profile?id=~Lan-Zhe_Guo2">Lan-Zhe Guo</a></div>
-                <div class="pub-venue">Under review. FMEA Workshop @ CVPR 2026 Poster. NeurIPS 2025 EAI Challenge Most Innovation Award.</div>
+                <div class="pub-title">DualWorldBench: Can Agents Plan Deliveries across Symbolic and Grounded Worlds?</div>
+                <div class="pub-authors"><a href="https://openreview.net/profile?id=~Yang_Chen58"><strong>Yang Chen</strong></a>, <a href="https://openreview.net/profile?id=~Bin_Wen4">Bin Wen</a>, <a href="https://openreview.net/profile?id=~Danyang_Peng2">Danyang Peng</a>, <a href="https://openreview.net/profile?id=~Hong-Jie_You1">Hong-Jie You</a>, <a href="https://openreview.net/profile?id=~Ziqiao_Shang1">Ziqiao Shang</a>, <a href="https://openreview.net/profile?id=~Lan-Zhe_Guo2">Lan-Zhe Guo</a></div>
+                <div class="pub-venue"><span class="venue-abbr">NeurIPS 2026</span>, accepted.</div>
+                <div class="pub-links"><a href="https://dualworld.netlify.app/">Website</a></div>
               </li>
               <li>
                 <div class="pub-title">From End-to-End to Step-by-Step: Learning Composable Navigation Primitives for Vision-Language Navigation</div>
@@ -292,10 +271,9 @@
                 <div class="pub-links"><a href="https://move2anything.netlify.app/">Website</a></div>
               </li>
               <li>
-                <div class="pub-title">DualWorldBench: Can Agents Plan Deliveries across Symbolic and Grounded Worlds?</div>
-                <div class="pub-authors"><a href="https://openreview.net/profile?id=~Yang_Chen58"><strong>Yang Chen</strong></a>, <a href="https://openreview.net/profile?id=~Bin_Wen4">Bin Wen</a>, <a href="https://openreview.net/profile?id=~Danyang_Peng2">Danyang Peng</a>, <a href="https://openreview.net/profile?id=~Hong-Jie_You1">Hong-Jie You</a>, <a href="https://openreview.net/profile?id=~Ziqiao_Shang1">Ziqiao Shang</a>, <a href="https://openreview.net/profile?id=~Lan-Zhe_Guo2">Lan-Zhe Guo</a></div>
-                <div class="pub-venue">Under review.</div>
-                <div class="pub-links"><a href="https://dualworld.netlify.app/">Website</a></div>
+                <div class="pub-title">Re²: Reflective Rule Induction and Rule-Guided Refinement for Embodied Planning</div>
+                <div class="pub-authors"><a href="https://openreview.net/profile?id=~Yang_Chen58"><strong>Yang Chen</strong></a>, <a href="https://openreview.net/profile?id=~Hong-Jie_You1">Hong-Jie You</a>, <a href="https://openreview.net/profile?id=~Jie-Jing_Shao1">Jie-Jing Shao</a>, <a href="https://openreview.net/profile?id=~Xiao-Wen_Yang4">Xiao-Wen Yang</a>, <a href="https://openreview.net/profile?id=~Ming_Yang30">Ming Yang</a>, <a href="https://openreview.net/profile?id=~Yu-Feng_Li1">Yu-Feng Li</a>, <a href="https://openreview.net/profile?id=~Lan-Zhe_Guo2">Lan-Zhe Guo</a></div>
+                <div class="pub-venue">Under review. FMEA Workshop @ CVPR 2026 Poster. NeurIPS 2025 EAI Challenge Most Innovation Award.</div>
               </li>
               <li>
                 <div class="pub-title">LoPhyDA: Low-Rank Tensor and Physics Gradient Guided Diffusion for Atmospheric Data Assimilation</div>
