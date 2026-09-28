@@ -90,9 +90,8 @@
         <section class="section news-section" id="news" aria-labelledby="news-title">
           <div class="section-head news-head">
             <h2 class="section-title" id="news-title">News</h2>
-            <span class="section-note" id="news-hint">Scroll for more ↓</span>
           </div>
-          <div class="news-window" role="region" aria-labelledby="news-title" aria-describedby="news-hint" tabindex="0">
+          <div class="news-window">
             <ol class="news-list">
               <li class="news-item">
                 <time datetime="2026-09">Sep 2026</time>
@@ -138,26 +137,25 @@
             </div>
             <div class="research-tree" role="group" aria-label="Research directions">
               <button type="button" class="map-node core-node is-active" data-node="agent" aria-pressed="true" aria-controls="mapDetail">
-                <span class="core-kicker">Research focus</span>
                 <span class="node-title">Embodied Agent</span>
                 <span class="node-subtitle">Plan · Act · Learn</span>
               </button>
               <div class="map-branches">
                 <button type="button" class="map-node topic-node" data-node="navigation" aria-pressed="false" aria-controls="mapDetail">
                   <span class="topic-eyebrow"><span class="topic-dot" aria-hidden="true"></span>01 / Navigate</span>
-                  <span class="node-title">Vision-Language <br />Navigation</span>
+                  <span class="node-title">Vision-Language Navigation</span>
                   <span class="node-subtitle">Composable navigation primitives</span>
                   <span class="node-footer">Move2Anything <span aria-hidden="true">↗</span></span>
                 </button>
                 <button type="button" class="map-node topic-node" data-node="planning" aria-pressed="false" aria-controls="mapDetail">
                   <span class="topic-eyebrow"><span class="topic-dot" aria-hidden="true"></span>02 / Plan</span>
-                  <span class="node-title">Task &amp; Motion <br />Planning</span>
+                  <span class="node-title">Task &amp; Motion Planning</span>
                   <span class="node-subtitle">Rule induction &amp; test-time refinement</span>
                   <span class="node-footer">Re² · DualWorldBench <span aria-hidden="true">↗</span></span>
                 </button>
                 <button type="button" class="map-node topic-node" data-node="robotics" aria-pressed="false" aria-controls="mapDetail">
                   <span class="topic-eyebrow"><span class="topic-dot" aria-hidden="true"></span>03 / Deploy</span>
-                  <span class="node-title">Robotics <br />Systems</span>
+                  <span class="node-title">Robotics Systems</span>
                   <span class="node-subtitle">Perception, planning &amp; control</span>
                   <span class="node-footer">Real-world deployment <span aria-hidden="true">↗</span></span>
                 </button>
